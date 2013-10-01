@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    var view = "site/tos"
+</script>
+<div class="container">
+    <header class="page-header">
+        <h1>
+
+        Geek学院服务协议（Terms of Service）
+        
+        <small><%=link_to "",tos_path(:format=>'md') ,:class=>"glyphicon glyphicon-download"%></small>
+
+        </h1>
+        
+    </header>
+    <div class="row">
+        <div class="col-md-3" id="">
+            <div class="bs-sidebar" role="complementary" >
+                <ul class="nav bs-sidenav"></ul>
+            </div>
+        </div>
+        <div class="col-md-9" role="main">
+            <div class="chinese-content">
+                <%=markdown(@tos).html_safe%>  
+            </div>  
+        </div>
+    </div>
+</div>
+<a id="scrollUp"></a>

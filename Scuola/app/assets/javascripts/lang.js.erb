@@ -1,0 +1,20 @@
+var lang = {};
+var loaded = {};
+function load_lang_pack(pack){
+    if (loaded[pack] == true) return;
+    for (var i in langs["<%=I18n.locale%>"][pack])
+        lang[i] = langs["<%=I18n.locale%>"][pack][i]
+}
+$(function(){
+    lang = langs["<%=I18n.locale%>"]['common'];
+    loaded["common"] = true;
+    load_lang_pack(controller);
+});
+$(window).bind(
+    'page:change',
+    function(){
+    lang = langs["<%=I18n.locale%>"]['common'];
+    loaded["common"] = true;
+    load_lang_pack(controller);
+    }
+);

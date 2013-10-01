@@ -1,0 +1,3 @@
+class UserEmailRegistrationVerification < UserRegistrationVerification
+	belongs_to :user_base
+end

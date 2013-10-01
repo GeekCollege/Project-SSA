@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title><%="#{@page_title || @page_controller } - Scuola"%></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript">
+  	var controller = "<%=@page_controller%>";
+  	var view = "";
+  </script>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="">
+	<div class="stage">
+		<div class="playard">
+			<header class="navbar navbar-inverse navbar-static-top fix_navbar" role="banner">
+			        <div class="container">
+			        	<div class="navbar-header">
+			        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				          </button>
+				          <a class="navbar-brand" href="/">Scuola</a>
+			        	</div>
+			            
+						<nav class="navbar-collapse collapse" role="navigation">
+						    <ul class="nav navbar-nav">
+			               		<li class="<%=@page_controller=='Home' ? 'active' : '' %>">
+				               		<a href="/">Home</a> 
+								</li>
+								<li class="<%=@page_controller=='Course' ? 'active' : '' %>">
+									<%=link_to 'Course' , course_list_path %>
+								</li>
+								<li class="<%=@page_controller=='Forum' ? 'active' : '' %>">
+									<%=link_to 'Forum' , forum_path %>
+								</li>
+							</ul>
+
+							<form class="navbar-form navbar-right" action="" novalidate="novalidate">
+								<div class="form-group"><input type="text" class="form-control" placeholder="Search"></div>
+							</form>
+							<ul class="nav navbar-nav navbar-right">
+								<% if @user_base.nil? or @user_base.new_record? %>
+								<li>
+									<%=link_to 'Login' , login_path(return_url: @return_to ||request.url) %>
+								</li>
+								<li>
+									<%=link_to 'Register' , register_path(return_url: @return_to || request.url) %>
+								</li>
+								<% else %>
+								<li>
+									<li class="dropdown">
+										<a class="dropdown-toggle" data-toggle="dropdown" href="#"><%=display_username(@user_base)%> <b class="caret"></b></a>
+										<ul class="dropdown-menu">
+											<li><%=link_to 'Home' , home_index_path %></li>
+											<li><%=link_to 'Center' , home_center_path %></li>
+											<li class="divider"></li>
+											<li><%= link_to 'Logout' , home_logout_path(return_url: @return_to || request.url) %></li>
+										</ul>
+									</li>
+								</li>
+								<% end %>
+							</ul>
+
+						</nav>
+					</div>
+			</header>
+			<div class="page">
+			<%= yield %>
+			</div>
+
+			<footer class="footer">
+				<div class="container">
+					<div class="row">
+					<div class="col-md-6 link">
+						<%=link_to '服务协议', tos_path%>
+		                ・
+		                <%=link_to '隐私政策', privacy_path%>
+		                ・
+		                <%=link_to '关于我们', aboutus_path%>
+		                ・
+		                <%=link_to '捐助我们', donate_path%>
+						・
+						<a href="https://geekcdn.duapp.com">CDN</a>
+						<div class="px20"></div>
+						<div class="font-size-small">
+							A Simple MOOC system Project-SSA（Scuola Speculum Aether） 
+						</div>
+						<div class="font-size-small">
+							Powered By <a href="http://rubyonrails.org/">Rails</a> ・ <a href="http://getbootstrap.com">Bootstrap 3</a> ・ <a href="https://github.com/Slacken/cdn">Layer</a>
+						</div>
+						<div class="font-size-small">
+							Host Powered By <a href="http://www.cloudcore.jp/">CloudCore</a>
+						</div>
+					</div>
+					<div class="col-md-6" style="text-align:right; padding-top:3%;">
+						<div>
+							<%=image_tag 'GCOEO.png' , alt: "GCOEO_logo"%>
+						</div>
+					</div>
+					</div>
+					<div style="text-align:center;margin-top:15px;">
+						<div>
+							Source Copyright © 2013 GeekCollege Web Technology Team <strong>All Rights Reserved</strong>
+						<div>
+							OpenSource with <a href="/LICENSE.md">BSD 3-Clause License</a>
+						</div>
+						<div class="font-akari">
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<div mask-escape='true' id="kitou" class="kitou mbtn hide">
+		<div name="gear" class="gear gearleft"></div>
+		<div name="gear" class="gear gearright"></div>
+	</div>
+</body>
+</html>

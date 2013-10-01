@@ -1,0 +1,99 @@
+<script type="text/javascript">
+	var view = "home/register"
+</script>
+<div class="container">
+	<header class="page-header">
+		<h1>Register</h1>
+	</header>
+<!--
+TODO: 修改动画
+具体方案
+A）如果没有遇到错误，注册框居中向上飞出
+B）如果遇到错误，首次出错时，登录框向左滑动
+错误提示从右端飞入
+C）如果遇到错误，第二次以上，更新错误内容，错误框晃动
+D）出错后登录成功，按照当前做动画。
+//-->
+	<%=form_tag register_submit_path ,class:"animated form-horizontal" , remote:true , "data-type" => :json, method: "post" ,"id"=>"home_box_reg",role:"form" do %>
+		<fieldset>
+			<div class="row">
+				<div class="col-md-6 home_right_border">
+					<%unless @errors.nil?%>
+						<div class="alert alert-error animated" id="alert_reg">
+							<div class="" id="alert_reg_box">
+								<h4>出错啦！</h4>
+								<ul>
+								<% @errors.each do |msg| %>
+								<li><%= msg %></li>
+								<% end %>
+								</ul>
+							</div>
+						</div>
+					<%else%>
+						<div class="alert alert-info animated" id="alert_reg">
+							<div class="" id="alert_reg_box">
+								<h5>请按要求填写注册表单</h5>
+							</div>
+						</div>
+					<%end%>
+					<div class="form-group">
+						<%= label_tag :email , "Email" , :class=>"col-md-4 control-label" , :for=>"user_base_email" %>
+						<div class="col-md-6">
+							<%= text_field :user_base,:email , :class=>"form-control" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= label_tag :username , "Username" , :class=>"col-md-4 control-label" , :for=>"user_base_username" %>
+						<div class="col-md-6">
+							<%= text_field :user_base,:username , :class=>"form-control" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= label_tag :password , "Password" , :class=>"col-md-4 control-label" , :for=>"user_base_password" %>
+						<div class="col-md-6">
+							<%= password_field :user_base,:password , :class=>"form-control" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= label_tag :password , "Confirm Password" , :class=>"col-md-4 control-label" , :for=>"user_base_confirm_password" %>
+						<div class="col-md-6">
+							<!-- <%= password_field :user_base,:confirm_password , :class=>"form-control" %> //-->
+							<input class="form-control" id="user_base_confirm_password" name="confirm_password" type="password">
+						</div>
+					</div>
+					<div class="form-group">
+						<%= label_tag :securityquiz , "Security Question" , :class=>"col-md-4 control-label" , :for=>"user_security_quiz" %>
+						<div class="col-md-6">
+							<%= text_field :user_security,:security_quiz , :class=>"form-control" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= label_tag :securityans , "Security Answer" , :class=>"col-md-4 control-label" , :for=>"user_security_ans" %>
+						<div class="col-md-6">
+							<%= text_field :user_security,:security_ans , :class=>"form-control" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-offset-4">
+						<%= check_box :formcheck, :agrees, :class=>""%>
+						<%= label_tag :agrees , "I am agree with the #{link_to 'Terms of Service',tos_path,:target => "_blank"}".html_safe , :for => "formcheck_agrees"%>
+						</div>
+					</div>
+					<div class="form-actions">
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-6">
+							<%= submit_tag "Register" ,:class=>"btn btn-primary",:id=>"btn_reg_sbt" ,:disabled=>""%>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="login_now" style="text-align:right">
+						<h3>已有账号？<%=link_to 'Login' , login_path(return_url: @return_to ||request.url) %></h3>
+					</div>
+				</div>
+			</div>
+			
+		</fieldset>
+	<% end %>
+</div>

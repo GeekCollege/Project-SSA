@@ -1,0 +1,340 @@
+<script type="text/javascript">
+    var view = "home/center"
+    var message = {
+        "list" : "<%=home_messages_list_path%>",
+        "load" : "<%=home_message_path(0)%>"
+    };
+    message.load = message.load.substr(0,message.load.length-1)
+</script>
+<div class="container">
+    <header class="page-header">
+        <h1>欢迎回来 , <%=display_username(@user_base)%></h1>
+    </header>
+    <div class="center_content">
+        <!-- Tabs //-->
+        <ul class="nav nav-tabs nav-justified" id="uc_tabs">
+            <li><a href="#status">状态</a></li>
+            <li><a href="#info">提醒  <span class="label label-default">0</span> <span class="label label-danger">1</span></a></li>
+            <!-- 未读提醒数需要修改，目前为静态 //-->
+            <li><a href="#classes">课程</a></li>
+            <li><a href="#topics">主题</a></li>
+            <li><a href="#safe">安全</a></li>
+            <li><a href="#user-info">个人资料</a></li>
+            <li><a href="#messages">站内信
+            <% if @unread_message == 0 %>
+              <span class="label label-default">0</span> 
+            <% else %>
+              <span class="label label-danger"><%=@unread_message%></span></a></li>
+            <% end %>
+            <li><a href="#bind">绑定</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="fade tab-pane" id="status">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="home_tabrow home_tabrow_first">
+                                <% if (@user_base.accesslevel & 1) == 0%>
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <h4>警告</h4>
+                                        您的邮箱地址尚未通过验证。这可能影响您的帐号的正常使用。如果您使用的地址不正确，可以 <a class="btn btn-info btn-xs">点击修改</a>  ，如果您没有收到验证邮件，请 <a class="btn btn-info btn-xs">重新发送</a> 。如果依旧无法解决，则请联系我们。
+                                    </div>
+                                <%end%>
+                                <table class="table col-md-11">
+                                    <tbody>
+                                        <tr>
+                                            <th>昵称</th>
+                                            <td><%=@user_base.username%></td>
+                                        </tr>
+                                        <tr>
+                                            <th>修改密码</th>
+                                            <td><a class="btn btn-danger btn-xs">点击修改</a></td>
+                                        </tr>
+                                        <tr>
+                                            <th>电子邮箱</th>
+                                            <td><%=@user_base.email%></td>
+                                        </tr>
+                                        <tr>
+                                            <th>权限等级</th>
+                                            <td><%=@user_base.accesslevel%></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fade tab-pane" id="info">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="home_tabrow home_tabrow_first">
+                                <!-- 目前为静态，待更改 //-->
+                                <h4>您有 1 个未读提醒</h4>
+                                <h4>您没有未读提醒</h4>
+                                <!-- TODO: 现在还没有可供调试的提醒，暂时不作修改 //-->
+                                <table class="table info-forread">
+                                    <tbody>
+                                        <!-- 每一行一个提醒 //-->
+                                        <tr>
+                                            <td><strong><a href="">这是一个未读提醒！</a></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="">这是一个已读提醒！</a></td>
+                                        </tr> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fade tab-pane" id="classes">
+                <div class="container">
+                <blockquote>未完成</blockquote>
+                </div>
+            </div>
+            <div class="fade tab-pane" id="topics">
+                <div class="container">
+                <blockquote>未完成</blockquote>
+                </div>
+            </div>
+            <div class="fade tab-pane" id="safe">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="home_tabrow home_tabrow_first">
+                                <h4>登录记录</h4>
+                                <table class="table login-log">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>IP</strong></th>
+                                            <th><strong>时间</strong</th>
+                                            <th><strong>地点</strong</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- 每一行一个时间 //-->
+                                        <!-- 地点需要IP库支持 //-->
+                                        <tr>
+                                            <td>1.1.1.1</td>
+                                            <td>YYYY.MM.DD  HH:MM:SS</td>
+                                            <td>你猜在哪</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1.1.1.1</td>
+                                            <td>YYYY.MM.DD  HH:MM:SS</td>
+                                            <td>你猜在哪</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fade tab-pane" id="messages">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="home_tabrow home_tabrow_first">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newmessage">写新站内信</button>
+                                
+                                <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#readmessage">测试</button> //-->
+
+                                <div class="modal fade" id="newmessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><!-- 模态消息对话框开始 //-->
+                                <%=form_tag home_message_send_path,class:"form-horizontal" , remote:true , "data-type" => :json, method: "post" ,"id"=>"home_message_send",role:"form" do %>
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">写新站内信</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal messageinput" role="form">
+                                                    <div class="form-group">
+                                                        <%=label_tag :username , "收件人" , :class=>"col-lg-2 control-label" , :for=>"user_message_username" %>
+                                                        <div class="col-lg-10">
+                                                            <%= text_field :user_message,:username , :class=>"form-control" %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <%=label_tag :title , "标题" , :class=>"col-lg-2 control-label" , :for=>"user_message_title" %>
+                                                        <div class="col-lg-10">
+                                                            <%= text_field :user_message,:title , :class=>"form-control" %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <%=label_tag :text , "内容" , :class=>"col-lg-2 control-label" , :for=>"user_message_text" %>
+                                                        <div class="col-lg-10">
+                                                            <div id="message_area"></div>
+                                                            <%=text_area :user_message,:text,:class=>"hide",:rows=>10 %>
+                                                            <div class="px10"></div>
+                                                            <div>编辑器支持Github Flavored Markdown <a href="http://jianshu.io/p/cfPxyr">如何使用?</a></div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <%= submit_tag "发送" ,:class=>"btn btn-primary",:id=>"btn_msg_sbt" %>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% end %>
+                                </div>
+                                
+                                <div class="modal fade" id="readmessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><!-- 模态消息对话框开始 //-->
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">读站内信</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal messageoutput" role="form">
+                                                    <div class="form-group">
+                                                        <label for="senduser" class="col-lg-2 control-label">发件人</label>
+                                                        <div class="col-lg-10">
+                                                            <label id="senduser" class="control-label">这是发件人</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="sendtitle" class="col-lg-2 control-label">标题</label>
+                                                        <div class="col-lg-10">
+                                                            <label id="sendtitle" class="control-label">这是标题</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="getmessage" class="col-lg-2 control-label">内容</label>
+                                                        <div class="col-lg-10">
+                                                            <div class="getmessage" style="overflow:auto;height:256px;" id="getmessage"></div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <%if @unread_message == 0%>
+                                <h4>您没有未读站内信</h4>
+                                <% else %>
+                                    <h4>您有 <%=@unread_message%> 个未读站内信</h4>
+                                    
+                                    <table class="table info">
+                                        <thead>
+                                            <tr>
+                                                <th><strong>标题</strong></th>
+                                                <th><strong>发信人</strong</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody role="msgholder">
+                                            <!-- 每一行一个站内信 //-->
+                                            <!-- 发信人连接到用户资料 //-->
+                                            <!--
+                                            以下内容由Ajax合成
+                                            <tr>
+                                                <td><strong><a href="">这是一个未读站内信！</a></strong></td>
+                                                <td><a href="">这是发信人</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="">这是一个已读站内信！</a></td>
+                                                <td><a href="">这是发信人</a></td>
+                                            </tr> 
+                                            //-->
+                                        </tbody>
+                                    </table>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fade tab-pane" id="user-info">
+                <div class="container">
+                </div>
+            </div>
+            <div class="fade tab-pane" id="bind">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="home_tabrow home_tabrow_first">
+                                <table class="table bind-status">
+                                    <thead>
+                                        <tr>
+                                            <th>账号平台</th>
+                                            <th>绑定状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- 每一行一个平台 //-->
+                                        <!-- 绑定状态在绑定后会显示用户账号 //-->
+                                        <tr>
+                                            <td>Google账号</td>
+                                            <td>未绑定</td>
+                                            <td><button type="button" class="btn btn-info btn-xs">绑定</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>腾讯微博</td>
+                                            <td>未绑定</td>
+                                            <td><button type="button" class="btn btn-info btn-xs">绑定</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>新浪微博</td>
+                                            <td>未绑定</td>
+                                            <td><button type="button" class="btn btn-info btn-xs">绑定</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>天翼账号</td>
+                                            <td>未绑定</td>
+                                            <td><button type="button" class="btn btn-info btn-xs">绑定</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- 以下是已绑定的 //-->
+                                <table class="table bind-status">
+                                    <thead>
+                                        <tr>
+                                            <th>账号平台</th>
+                                            <th>绑定状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Google账号</td>
+                                            <td>已绑定，账号：XXX@gmail.com</td>
+                                            <td><button type="button" class="btn btn-danger btn-xs">取消绑定</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>腾讯微博</td>
+                                            <td>已绑定，账号：XXXXXXXX</td>
+                                            <td><button type="button" class="btn btn-danger btn-xs">取消绑定</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>新浪微博</td>
+                                            <td>已绑定，账号：XXX@sina.com.cn</td>
+                                            <td><button type="button" class="btn btn-danger btn-xs">取消绑定</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>天翼账号</td>
+                                            <td>已绑定，账号：XXXXXXXX@189.cn</td>
+                                            <td><button type="button" class="btn btn-danger btn-xs">取消绑定</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

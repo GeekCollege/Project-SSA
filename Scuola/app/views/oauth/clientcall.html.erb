@@ -1,0 +1,17 @@
+<script type="text/javascript">
+window.opener.oauth.order.succ("home.process_oauth_<%=@act%>");
+window.opener.oauth.order.fail("home.process_oauth_<%=@act%>");
+</script>
+<% if @errors.any? %>
+<h3>Failed</h3>
+<ul>
+    <% @errors.each {|e| %>
+        <li><%=e%></li>
+    <% } %>
+</ul>
+
+<% else %>
+<script type="text/javascript">
+window.location.href="<%=@wtfurl%>"
+</script>
+<% end %>

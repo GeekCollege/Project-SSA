@@ -1,0 +1,29 @@
+
+.oauth_screenholder{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 9998;
+    left: 0px;
+    top: 0px;
+    text-align: center;
+    vertical-align:middle;
+    display:table;
+}
+
+.oauth_content{
+    display:table-cell;
+    text-align: center;
+    vertical-align:middle;
+    font-size:25px;
+    color:#ffffff;
+}
+
+.modal-active {
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+}

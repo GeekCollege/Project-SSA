@@ -1,0 +1,82 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_directory .
+ *= require_directory ./forum/
+ *= require ./highlight.js/github.css
+ */
+
+.footer {
+	padding: 40px 0;
+	/*margin-top: 25px; */
+	border-top: 1px solid #e5e5e5;
+	background-color: #f5f5f5;
+
+	position: absolute;
+	bottom: -25px;
+	width:100%;
+	height:232px;
+	clear:both;
+}
+.footer .link a {
+	color: gray !important;
+	font-weight: bold;
+}
+
+.hide {
+  display: none;
+}
+.fix_navbar {
+  margin-bottom : 0px !important; 
+}
+.chinese-content > p {text-indent:2em;}
+
+.px20 {
+	height: 20px;
+	display: block;
+}
+
+.px10 {
+	height: 10px;
+	display: block;
+}
+
+.font-size-small {
+	font-size: 13px;
+	line-height: 150%;
+	color: gray;
+}
+
+.font-akari {
+	font-size: 11px;
+	color: #ccc;
+}
+
+html,body {
+	margin: 0;
+	padding:0;
+	height: 100%;
+}
+
+.playard {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	position: relative;
+}
+
+.page {
+	padding-bottom:232px;
+}
+
+.stage {
+	height: 100%;
+}

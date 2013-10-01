@@ -1,0 +1,43 @@
+.kitou {
+	width: 177px;
+	height: 86px;
+	right: 0px;
+	bottom: 0px;
+	position:fixed;
+	z-index: 9999;
+	background-image: image-url("kitou.png");
+}
+.gear {
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	background-image: image-url("gear.png");
+}
+@keyframes gearrotateleft{
+	0% { transform: rotateZ(0);-webkit-transform: rotateZ(0); }
+	100% { transform: rotateZ(-359.9deg);-webkit-transform: rotateZ(-359.9deg);}
+}
+@-webkit-keyframes gearrotateleft{
+	0% { transform: rotateZ(0);-webkit-transform: rotateZ(0); }
+	100% { transform: rotateZ(-359.9deg);-webkit-transform: rotateZ(-359.9deg);}
+}
+@keyframes gearrotateright{
+	0% { transform: rotateZ(0);-webkit-transform: rotateZ(0); }
+	100% { transform: rotateZ(359.9deg);-webkit-transform: rotateZ(359.9deg);}
+}
+@-webkit-keyframes gearrotateright{
+	0% { transform: rotateZ(0);-webkit-transform: rotateZ(0); }
+	100%{ transform: rotateZ(359.9deg);-webkit-transform: rotateZ(359.9deg);}
+}
+.gearleft{
+	left: 144px;
+	top: 36px;
+	animation: gearrotateleft 1.5s infinite linear;
+	-webkit-animation: gearrotateleft 1.5s infinite linear;
+}
+.gearright{
+	left: 121px;
+	top: 53px;
+	animation: gearrotateright 1.5s infinite linear;
+	-webkit-animation: gearrotateright 1.5s infinite linear;
+}
