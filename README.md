@@ -3,6 +3,8 @@ Project-SSA
 
 **Project-SSA** 是一个基于 **RoR** 与 **Node.js** 的类MOOC系统。
 
+###**项目尚未完成，请谨慎使用代码**###
+
 ##组成部分##
 
 ###**Scuola**###
